@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Overpass:wght@400;500;700;900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Overpass", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: #242424;
+}
+
+button {
+  cursor: pointer;
+}
+
+.title {
+  font-size: 40px;
+  margin-top: 24px;
+  text-align: center;
+  color: #647380;
+}
+
+.subtitle {
+  color: #647380;
+  margin-bottom: 24px;
+}
+
+.anime__list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.anime {
+  width: 25%;
+  padding: 16px;
+}
+
+.anime__name {
+  color: #647380;
+  font-size: 18px;
+}
+
+.anime__img--wrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.anime__img {
+  width: 100%;
+  transform: scale(1.1);
+}
+
+.container {
+  padding: 24px 32px;
+}
+
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+/* nav section */
+
+nav {
+  background-color: #2b2d42;
+  height: 100px;
+  padding: 0px 24px;
+  display: flex;
+  align-items: center;
+}
+
+.nav__container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo--wrapper {
+  max-width: 75px;
+}
+
+.nav__logo {
+  width: 100%;
+}
+
+.nav__link--list {
+  display: flex;
+}
+
+.nav__link {
+  margin-left: 16px;
+}
+
+.nav__link--anchor {
+  color: #bcbedc;
+  font-size: 18px;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+/* header section */
+
+.header__container {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header__img--wrapper {
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 12px 30px 0px rgba(0, 0, 0, 0.4);
+}
+
+.header__img {
+  width: 100%;
+  transform: scale(1.1);
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+/* search section */
+
+.search__form {
+  display: flex;
+  align-items: center;
+}
+
+.search__box {
+  padding: 20px 80px 20px 20px;
+  border: 2px solid #2b2d42;
+  border-radius: 40px;
+  margin-right: 16px;
+}
+
+.search__button {
+  border: none;
+  background-color: #ffffff;
+}
+
+.search__button--icon {
+  font-size: 20px;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+/* trending section */
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+/* popular section */
