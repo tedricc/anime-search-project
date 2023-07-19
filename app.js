@@ -85,7 +85,7 @@ function showSearchRes(event) {
 
   localStorage.setItem("searchTerm", searchTerm);
 
-  window.location.href = `${window.location.origin}/res.html`;
+  window.location.href = "./res.html";
 }
 
 function animeHTML(anime, img) {
