@@ -39,8 +39,6 @@ function animeHTML(res) {
     `;
 }
 
-// runs immediately using index.html search term
-
 async function trending() {
   // Here we define our query as a multi-line string
   const query = `
@@ -109,34 +107,6 @@ async function trending() {
 }
 
 trending();
-
-async function search(event) {
-  event.preventDefault();
-  const form = event.target; // Get the form element from the event object
-  const formData = new FormData(form); // Get the form data as a FormData object
-
-  // Access the input value using the input field name
-  const searchTerm = formData.get("search__term");
-
-  localStorage.setItem("searchTerm", searchTerm);
-
-  await main();
-}
-
-// converts data into html
-
-function animeHTML(res) {
-  return `
-    <div class="anime">
-        <figure class="anime__img--wrapper">
-        <img src="${res.coverImage.extraLarge}" class="anime__img" alt="" />
-        </figure>
-        <h3 class="anime__name">${res.title.romaji}</h3>
-    </div>
-    `;
-}
-
-// runs immediately using index.html search term
 
 async function popular() {
   // Here we define our query as a multi-line string
