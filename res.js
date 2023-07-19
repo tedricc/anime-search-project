@@ -60,6 +60,9 @@ async function main() {
                 coverImage {
                     extraLarge
                 }
+                popularity
+                trending
+                description
             }
         }
     }
@@ -96,13 +99,14 @@ async function main() {
 
   let resultsList = document.querySelector(".results__list");
 
-  console.log(data.data.Page.media);
-
   resultsList.innerHTML = data.data.Page.media
+    .sort((a, b) => b.popularity - a.popularity)
     .map((res) => {
       return animeHTML(res);
     })
     .join("");
+
+    console.log(data.data.Page.media)
 }
 
 main();
