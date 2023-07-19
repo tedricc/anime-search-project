@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Anime Search</title>
     <link rel="stylesheet" href="./style.css" />
     <script
       src="https://kit.fontawesome.com/c8e4d183c2.js"
@@ -14,9 +14,11 @@
     <section id="landing">
       <nav>
         <div class="nav__container">
-          <figure class="nav__logo--wrapper">
-            <img src="./assets/icon.svg" class="nav__logo" alt="" />
-          </figure>
+          <a href="#">
+            <figure class="nav__logo--wrapper">
+              <img src="./assets/icon.svg" class="nav__logo" alt="" />
+            </figure>
+          </a>
           <div class="nav__link--list">
             <div class="nav__link">
               <a href="#" class="nav__link--anchor link__hover">Home</a>
@@ -51,12 +53,13 @@
     <section id="search">
       <div class="container">
         <div class="row">
-          <form class="search__form" onsubmit="search(event)">
+          <form class="search__form" onsubmit="showSearchRes(event)">
             <input
               type="text"
               class="search__box"
               placeholder="Search anime..."
               name="search__term"
+              required
             />
             <button class="search__button">
               <svg
@@ -107,6 +110,6 @@
         </div>
       </div>
     </section>
-    <script src="./app.js"></script>
   </body>
+  <script src="./app.js"></script>
 </html>
