@@ -74,6 +74,11 @@ async function trending() {
                 trending
                 description
                 siteUrl
+                startDate {
+                  year
+                  month
+                  day
+                }
             }
         }
     }
@@ -135,6 +140,11 @@ async function popular() {
                 trending
                 description
                 siteUrl
+                startDate {
+                  year
+                  month
+                  day
+                }
             }
         }
     }

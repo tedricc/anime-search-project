@@ -29,7 +29,6 @@ button {
 
 .subtitle {
   color: #647380;
-  margin-bottom: 24px;
 }
 
 .anime__list {
@@ -71,7 +70,7 @@ button {
 }
 
 .container {
-  padding: 32px 32px;
+  padding: 24px 24px;
 }
 
 .row {
@@ -221,6 +220,23 @@ nav {
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
 
+/* results section */
+
+.results__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#filter {
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 4px 4px;
+  border-color: #2b2d42;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
 /* footer section */
 
 footer {
@@ -298,8 +314,17 @@ footer {
     display: block;
   }
 
+  .header__container {
+    padding: 20px;
+  }
+
   .search__box {
     padding-right: 20px;
+  }
+
+  .results__header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .footer__link--list {

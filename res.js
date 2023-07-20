@@ -32,6 +32,49 @@ async function search(event) {
   await main();
 }
 
+// filter function
+
+async function filterAnime(event) {
+  let data = await getData()
+  if (event.target.value === "new") {
+    resultsList.innerHTML = data.data.Page.media
+      .sort((a, b) => b.startDate.year - a.startDate.year)
+      .map((res) => {
+        return animeHTML(res);
+      })
+      .join("");
+
+    console.log(data.data.Page.media);
+  } else if (event.target.value === "old") {
+    resultsList.innerHTML = data.data.Page.media
+      .sort((a, b) => a.startDate.year - b.startDate.year)
+      .map((res) => {
+        return animeHTML(res);
+      })
+      .join("");
+
+    console.log(data.data.Page.media);
+  } else if (event.target.value === "trending") {
+    resultsList.innerHTML = data.data.Page.media
+      .sort((a, b) => b.trending - a.trending)
+      .map((res) => {
+        return animeHTML(res);
+      })
+      .join("");
+
+    console.log(data.data.Page.media);
+  } else if (event.target.value === "popular") {
+    resultsList.innerHTML = data.data.Page.media
+      .sort((a, b) => b.popularity - a.popularity)
+      .map((res) => {
+        return animeHTML(res);
+      })
+      .join("");
+
+    console.log(data.data.Page.media);
+  }
+}
+
 // converts data into html
 
 function animeHTML(res) {
@@ -47,10 +90,7 @@ function animeHTML(res) {
   `;
 }
 
-// runs immediately using index.html search term
-
-async function main() {
-  loading.classList.add("loading");
+async function getData() {
   // Here we define our query as a multi-line string
   const query = `
     query ($id: Int, $page: Int, $perPage: Int, $search: String) {
@@ -73,6 +113,11 @@ async function main() {
                 trending
                 description
                 siteUrl
+                startDate {
+                  year
+                  month
+                  day
+                }
             }
         }
     }
@@ -103,6 +148,12 @@ async function main() {
   // Make the HTTP Api request
   let data = await fetch(url, options).then(handleResponse).catch(handleError);
 
+  return data;
+}
+
+async function main() {
+  loading.classList.add("loading");
+  let data = await getData();
   loading.classList.remove("loading");
 
   resultsList.innerHTML = data.data.Page.media
