@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anime Search</title>
     <link rel="stylesheet" href="./style.css" />
+    <script
+      src="https://kit.fontawesome.com/c8e4d183c2.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <section id="landing">
@@ -65,7 +69,6 @@
                 viewBox="0 0 512 512"
                 class="search__button--icon"
               >
-                <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                 <path
                   d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
                 />
@@ -80,14 +83,10 @@
       <div class="container">
         <div class="row">
           <h2 class="subtitle">Search results</h2>
-          <div class="anime__list results__list">
-            <!-- <div class="anime">
-              <figure class="anime__img--wrapper">
-                <img src="./assets/placeholder.jpg" class="anime__img" alt="" />
-              </figure>
-              <h3 class="anime__name">Placeholder</h3>
-            </div> -->
+          <div class="results__loading">
+            <i class="fas fa-spinner"></i>
           </div>
+          <div class="anime__list results__list"></div>
         </div>
       </div>
     </section>
@@ -106,7 +105,9 @@
                 <a href="#" class="footer__link--anchor link__hover">Home</a>
               </div>
               <div class="footer__link">
-                <a href="#search" class="footer__link--anchor link__hover">Search</a>
+                <a href="#search" class="footer__link--anchor link__hover"
+                  >Search</a
+                >
               </div>
               <div class="footer__link">
                 <a href="#trending" class="footer__link--anchor link__hover"

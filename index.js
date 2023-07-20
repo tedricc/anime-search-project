@@ -1,3 +1,12 @@
+const trendingList = document.querySelector(".trending__list");
+const popularList = document.querySelector(".popular__list");
+
+// Return 8 animes
+const variables = {
+  page: 1,
+  perPage: 8,
+};
+
 // On homepage search -> stores the search term into local and goes to the result site
 
 function showSearchRes(event) {
@@ -26,20 +35,23 @@ function handleError(error) {
   console.error(error);
 }
 
-// converts data into html
+// Converts data into html
 
 function animeHTML(res) {
   return `
     <div class="anime">
+      <a href="${res.siteUrl}" class="anime__list--anchor" target="_blank">
         <figure class="anime__img--wrapper">
-        <img src="${res.coverImage.extraLarge}" class="anime__img" alt="" />
+          <img src="${res.coverImage.extraLarge}" class="anime__img" alt="" />
         </figure>
         <h3 class="anime__name">${res.title.romaji}</h3>
+      </a>
     </div>
-    `;
+  `;
 }
 
 async function trending() {
+  trendingList.classList.add("loading");
   // Here we define our query as a multi-line string
   const query = `
     query ($id: Int, $page: Int, $perPage: Int, $search: String) {
@@ -61,20 +73,11 @@ async function trending() {
                 popularity
                 trending
                 description
+                siteUrl
             }
         }
     }
   `;
-
-  // Define our query variables and values that will be used in the query request
-  const variables = {
-    page: 1,
-    perPage: 8,
-  };
-
-  // const variables = {
-  //   search: `${searchTerm}`,
-  // };
 
   // Define the config we'll need for our Api request
   const url = "https://graphql.anilist.co";
@@ -94,7 +97,7 @@ async function trending() {
   // Make the HTTP Api request
   let data = await fetch(url, options).then(handleResponse).catch(handleError);
 
-  let trendingList = document.querySelector(".trending__list");
+  trendingList.classList.remove("loading");
 
   trendingList.innerHTML = data.data.Page.media
     .sort((a, b) => b.trending - a.trending)
@@ -109,6 +112,7 @@ async function trending() {
 trending();
 
 async function popular() {
+  popularList.classList.add("loading");
   // Here we define our query as a multi-line string
   const query = `
     query ($id: Int, $page: Int, $perPage: Int, $search: String) {
@@ -130,20 +134,11 @@ async function popular() {
                 popularity
                 trending
                 description
+                siteUrl
             }
         }
     }
   `;
-
-  // Define our query variables and values that will be used in the query request
-  const variables = {
-    page: 1,
-    perPage: 8,
-  };
-
-  // const variables = {
-  //   search: `${searchTerm}`,
-  // };
 
   // Define the config we'll need for our Api request
   const url = "https://graphql.anilist.co";
@@ -163,7 +158,7 @@ async function popular() {
   // Make the HTTP Api request
   let data = await fetch(url, options).then(handleResponse).catch(handleError);
 
-  let popularList = document.querySelector(".popular__list");
+  popularList.classList.remove("loading");
 
   popularList.innerHTML = data.data.Page.media
     .sort((a, b) => b.popularity - a.popularity)

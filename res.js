@@ -1,3 +1,6 @@
+const resultsList = document.querySelector(".results__list");
+const loading = document.querySelector(".results__loading");
+
 // API code to retrieve data and handle errors
 
 function handleResponse(response) {
@@ -14,6 +17,9 @@ function handleError(error) {
 // new search function
 
 async function search(event) {
+  // clear inner html
+  resultsList.innerHTML = "";
+
   event.preventDefault();
   const form = event.target; // Get the form element from the event object
   const formData = new FormData(form); // Get the form data as a FormData object
@@ -31,17 +37,20 @@ async function search(event) {
 function animeHTML(res) {
   return `
     <div class="anime">
+      <a href="${res.siteUrl}" class="anime__list--anchor" target="_blank">
         <figure class="anime__img--wrapper">
-        <img src="${res.coverImage.extraLarge}" class="anime__img" alt="" />
+          <img src="${res.coverImage.extraLarge}" class="anime__img" alt="" />
         </figure>
         <h3 class="anime__name">${res.title.romaji}</h3>
+      </a>
     </div>
-    `;
+  `;
 }
 
 // runs immediately using index.html search term
 
 async function main() {
+  loading.classList.add("loading");
   // Here we define our query as a multi-line string
   const query = `
     query ($id: Int, $page: Int, $perPage: Int, $search: String) {
@@ -63,6 +72,7 @@ async function main() {
                 popularity
                 trending
                 description
+                siteUrl
             }
         }
     }
@@ -74,10 +84,6 @@ async function main() {
     page: 1,
     perPage: 8,
   };
-
-  // const variables = {
-  //   search: `${searchTerm}`,
-  // };
 
   // Define the config we'll need for our Api request
   const url = "https://graphql.anilist.co";
@@ -97,7 +103,7 @@ async function main() {
   // Make the HTTP Api request
   let data = await fetch(url, options).then(handleResponse).catch(handleError);
 
-  let resultsList = document.querySelector(".results__list");
+  loading.classList.remove("loading");
 
   resultsList.innerHTML = data.data.Page.media
     .sort((a, b) => b.popularity - a.popularity)
@@ -106,7 +112,7 @@ async function main() {
     })
     .join("");
 
-    console.log(data.data.Page.media)
+  console.log(data.data.Page.media);
 }
 
 main();
